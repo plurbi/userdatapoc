@@ -51,7 +51,7 @@ const Home = () => {
         <Col span={24}>
           {users.map((u, i) => {
             return (
-              <Row>
+              <Row key={i}>
                 <Col span={8}> {u.userToken}</Col>
                 {/* <Col span={2}> {u.platform}</Col> */}
                 <Col span={2}> {u.deviceScreenSizeHeight}</Col>
@@ -79,7 +79,7 @@ const Home = () => {
         <Col span={24}>
           {products.map((u, i) => {
             return (
-              <Row>
+              <Row key={i}>
                 <Col span={4}>{u.nombre}</Col>
                 <Col span={4}>{u.precio}</Col>
                 <Col span={4}>{u.stock}</Col>

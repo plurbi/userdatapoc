@@ -36,12 +36,12 @@ const getGeo = (): Promise<{ lat: number; long: number }> => {
 };
 const setUserData = async (email: string) => {
 
-  var uuid = new DeviceUUID();
+ 
   console.log('window', window);
   console.log('navigator', navigator);
 
   const geoData = await getGeo();
-  const userdata: UserData = { userToken : concatenateAndEncrypt(window.screen.height.toString(), window.screen.width.toString())};
+  const userdata: UserData = { userToken : concatenateAndEncrypt(window.screen.height.toString(), window.screen.width.toString(), email)};
  
   // userdata.connectionType = navigator.connection.effectiveType;
   // userdata.platform = navigator.userAgentData.platform;
