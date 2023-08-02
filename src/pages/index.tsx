@@ -1,6 +1,6 @@
 'use client';
 import AppMenu from '@/components/menu'
-import './globals.css'
+import '../app/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -17,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    
       <AppMenu/>
-      <body className={inter.className}>{children}</body>
-    </html>
+       
+     
   )
 }

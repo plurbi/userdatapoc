@@ -5,11 +5,10 @@ import { Button, Col, Input, Row } from 'antd';
 import { setUserData } from './storeUserData/consumerData';
 import { UserData } from '../models/userData';
 import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/localStorageService';
-import products from './../mock/productsList';
-import TextArea from 'antd/es/input/TextArea';
+import products from '../mock/productsList';
 
 
-const Home = () => {
+const Register = () => {
   const [inputData, setInputData] = useState<string>("");
   const [users, setUsers] = useState<UserData[]>(loadUserDataFromLocalStorage);
   const [selectedUser, setSelectedUser] = useState<UserData>();
@@ -135,6 +134,7 @@ const cleanLocalStorage = () => {
       </Row>
     </div>
   );
+  
 };
 
-export default Home;
+export default Register;

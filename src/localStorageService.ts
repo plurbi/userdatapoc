@@ -6,6 +6,7 @@ const keys = {
 
 export function saveData(userData: UserData): void {
   if (typeof window !== 'undefined') {
+    clearLocalStorage();
     const existingDataJSON = localStorage.getItem(keys.userdata);
     const existingData: UserData[] = existingDataJSON ? JSON.parse(existingDataJSON) : [];
     existingData.push(userData);

@@ -16,5 +16,5 @@ export type UserData = {
     osArchitecture?:number;
     architectureFamily?:string;
     architectureVersion?:string;
-    browserVersion?:string
+    browserVersion?:string;
 }
