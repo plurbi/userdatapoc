@@ -1,5 +1,5 @@
 
-import { saveData } from "@/localStorageService";
+import { saveUserData } from "@/services/localStorageService";
 import { UserData } from "../../models/userData";
 
 import CryptoJS from "crypto-js";
@@ -42,7 +42,17 @@ const setUserData = async (email: string) => {
   console.log('platform', platform);
 
   const geoData = await getGeo();
-  const userdata: UserData = { userToken: concatenateAndEncrypt(window.screen.height.toString(), window.screen.width.toString(), email) };
+  const ipData = await getIPAddress();
+  const userdata: UserData =
+  {
+    userToken: concatenateAndEncrypt(
+      ipData,
+      window.screen.height.toString(),
+      window.screen.width.toString(),
+      email,
+      geoData?.lat?.toString(),
+      geoData?.long?.toString())
+  };
 
   // userdata.connectionType = navigator.connection.effectiveType;
   // userdata.platform = navigator.userAgentData.platform;
@@ -50,7 +60,7 @@ const setUserData = async (email: string) => {
   userdata.deviceScreenSizeHeight = window.screen.height;
   userdata.deviceScreenSizeWidth = window.screen.width;
   userdata.location = window.origin;
-  userdata.publicIP = await getIPAddress();
+  userdata.publicIP = ipData;
   userdata.latitude = geoData.lat;
   userdata.longitude = geoData.long;
   userdata.email = email;
@@ -62,10 +72,7 @@ const setUserData = async (email: string) => {
   userdata.architectureVersion = platform.os?.version;
   userdata.browserVersion = platform.version;
 
-
-  console.log('userdata', platform);
-
-  saveData(userdata);
+  saveUserData(userdata);
 }
 const concatenateAndEncrypt = (...strings: string[]): string => {
   const combinedString = strings.join('');

@@ -2,7 +2,7 @@
 'use client';
 import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'antd';
-import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/localStorageService';
+import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/services/localStorageService';
 import AppMenu from '@/components/menu';
 import { UserData } from '@/models/userData';
 import { setUserData } from '@/app/storeUserData/consumerData';
@@ -30,7 +30,7 @@ const Register = () => {
   }
   return (
     <div className="App">
-       <AppMenu />
+      <AppMenu />
       <Row>
         <Col>
           <Input placeholder="Basic usage" onChange={(e) => { setInputData(e.target.value) }} value={inputData} />
@@ -47,7 +47,7 @@ const Register = () => {
         <Col span={24}>
           {users.map((u, i) => {
             return (
-              <>               
+              <>
                 <Row key={i} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Token</Col>
                   <Col span={8}> {u.userToken}</Col>
@@ -101,31 +101,6 @@ const Register = () => {
                   <Col span={8}> {u.browserVersion}</Col>
                 </Row>
               </>
-            );
-          })}
-        </Col>
-      </Row>
-
-      <hr></hr>
-      <Row>
-        <Col span={4}>PRODUCT</Col>
-        <Col span={4}>Precio</Col>
-        <Col span={4}>Stock</Col>
-        <Col span={4}>Token</Col>
-      </Row>
-      <hr></hr>
-      <Row>
-        <Col span={24}>
-          {products.map((u, i) => {
-            return (
-              <Row key={i}>
-                <Col span={4}>{u.nombre}</Col>
-                <Col span={4}>{u.precio}</Col>
-                <Col span={4}>{u.stock}</Col>
-                <Col span={4}>{u.token}</Col>
-
-                <Button type="primary" >Purchase</Button>
-              </Row>
             );
           })}
         </Col>
