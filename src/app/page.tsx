@@ -49,7 +49,7 @@ const cleanLocalStorage = () => {
             return (
               <>
                 <Row key={i} onClick={() => { getuserByEmail(u.email) }}>
-                  <Col span={8}> USERS</Col>
+                  <Col span={8}> Token</Col>
                   <Col span={8}> {u.userToken}</Col>
                 </Row>
                 <Row key={u.email} onClick={() => { getuserByEmail(u.email) }}>
