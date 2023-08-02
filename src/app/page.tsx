@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'antd';
 import { setUserData } from './storeUserData/consumerData';
 import { UserData } from '../models/userData';
-import { getUserByEmail, loadUserDataFromLocalStorage } from '@/localStorageService';
+import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/localStorageService';
 import products from './../mock/productsList';
 import TextArea from 'antd/es/input/TextArea';
 
@@ -25,7 +25,10 @@ const Home = () => {
     await setUserData(inputData);
     setUsers(loadUserDataFromLocalStorage);
   };
-
+const cleanLocalStorage = () => {
+  clearLocalStorage();
+  setUsers(loadUserDataFromLocalStorage);
+}
   return (
     <div className="App">
       <Row>
@@ -45,7 +48,7 @@ const Home = () => {
           {users.map((u, i) => {
             return (
               <>
-                <Row key={u.userToken} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={i} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> USERS</Col>
                   <Col span={8}> {u.userToken}</Col>
                 </Row>
@@ -128,7 +131,7 @@ const Home = () => {
         </Col>
       </Row>
       <Row>
-        <TextArea rows={4} value={selectedUser?.platformResume} />
+        <Button type="primary"  onClick={()=>{cleanLocalStorage()}} >Clear Local Storage</Button>
       </Row>
     </div>
   );
