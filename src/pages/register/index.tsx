@@ -2,11 +2,12 @@
 'use client';
 import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'antd';
-import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/services/localStorageService';
+ 
 import AppMenu from '@/components/menu';
 import { UserData } from '@/models/userData';
 import { setUserData } from '@/app/storeUserData/consumerData';
-import products from '../../mock/productsList';
+
+import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/services/localStorageService';
 
 const Register = () => {
   const [inputData, setInputData] = useState<string>("");
@@ -39,9 +40,6 @@ const Register = () => {
           <Button type="primary" onClick={setData}>Log In</Button>
         </Col>
       </Row>
-
-      <hr></hr>
-
       <hr></hr>
       <Row>
         <Col span={24}>
@@ -105,8 +103,9 @@ const Register = () => {
           })}
         </Col>
       </Row>
+      <hr></hr>
       <Row>
-        <Button type="primary" onClick={() => { cleanLocalStorage() }} >Clear Local Storage</Button>
+        <Button type="primary" onClick={() => { cleanLocalStorage() }} >Reset Data</Button>
       </Row>
     </div>
   );

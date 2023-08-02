@@ -1,4 +1,5 @@
-import { UserData } from "../models/userData";
+import { UserData } from "@/models/userData";
+
 
 const keys = {
   userdata: "user-data-array",
@@ -52,9 +53,9 @@ export function setUserToken(token: string): void {
     localStorage.setItem(keys.largeToken, token);
   }
 }
-export function getUserToken(): string | null {
+export   function  getUserToken(): string | null {
   if (typeof window !== 'undefined') {
-    localStorage.getItem(keys.largeToken);
+      return localStorage.getItem(keys.largeToken);
   }
   return null;
 }

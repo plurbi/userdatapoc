@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'antd';
 import { setUserData } from './storeUserData/consumerData';
 import { UserData } from '../models/userData';
-import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/services/localStorageService';
+import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/localStorageService';
 import products from '../mock/productsList';
 
 
