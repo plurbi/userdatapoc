@@ -1,9 +1,9 @@
 
 import { saveData } from "@/localStorageService";
 import { UserData } from "../../models/userData";
-import { DeviceUUID } from "device-uuid";
-import CryptoJS from "crypto-js";
 
+import CryptoJS from "crypto-js";
+import platform from 'platform';
 
 
 const getIPAddress = async () => {
@@ -36,13 +36,14 @@ const getGeo = (): Promise<{ lat: number; long: number }> => {
 };
 const setUserData = async (email: string) => {
 
- 
-  console.log('window', window);
-  console.log('navigator', navigator);
+
+  // console.log('window', window);
+  // console.log('navigator', navigator);
+  console.log('platform', platform);
 
   const geoData = await getGeo();
-  const userdata: UserData = { userToken : concatenateAndEncrypt(window.screen.height.toString(), window.screen.width.toString(), email)};
- 
+  const userdata: UserData = { userToken: concatenateAndEncrypt(window.screen.height.toString(), window.screen.width.toString(), email) };
+
   // userdata.connectionType = navigator.connection.effectiveType;
   // userdata.platform = navigator.userAgentData.platform;
   // userdata.isMobile = navigator.userAgentData.mobile;
@@ -53,15 +54,23 @@ const setUserData = async (email: string) => {
   userdata.latitude = geoData.lat;
   userdata.longitude = geoData.long;
   userdata.email = email;
+  userdata.platformResume = JSON.stringify(platform);
+  userdata.platformDescription = platform.description;
+  userdata.platformName = platform.name;
+  userdata.osArchitecture = platform.os?.architecture;
+  userdata.architectureFamily = platform.os?.family;
+  userdata.architectureVersion = platform.os?.version;
+  userdata.browserVersion = platform.version;
 
-console.log('ud', userdata);
-   
+
+  console.log('userdata', platform);
+
   saveData(userdata);
 }
 const concatenateAndEncrypt = (...strings: string[]): string => {
   const combinedString = strings.join('');
   const encrypted = CryptoJS.SHA256(combinedString).toString();
- 
+
   return encrypted;
 }
 export { setUserData };

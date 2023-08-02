@@ -10,4 +10,11 @@ export type UserData = {
     latitude?:number;
     longitude?:number;
     email?:string;
+    platformResume?:string;
+    platformDescription?:string;
+    platformName?:string;
+    osArchitecture?:number;
+    architectureFamily?:string;
+    architectureVersion?:string;
+    browserVersion?:string
 }

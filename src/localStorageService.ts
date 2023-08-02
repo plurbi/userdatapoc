@@ -21,7 +21,25 @@ export function loadUserDataFromLocalStorage(): UserData[] {
     return [];
 }
 
-
+export function getUserByEmail(email: string): UserData | null {
+    if (typeof window !== 'undefined') {
+      const userDataJSON = localStorage.getItem(keys.userdata);
+      const users = userDataJSON ? JSON.parse(userDataJSON) : [];
+  
+      // Find the user with the matching email
+      const matchingUser = users.find((user: UserData) => user.email === email);
+  
+      if (matchingUser) {
+        return matchingUser;
+      } else {
+        // Return null if no matching user is found
+        return null;
+      }
+    } else {
+      // Handle the case when localStorage is not available (e.g., in a server-side environment)
+      throw new Error('localStorage is not available in this environment.');
+    }
+  }
 
 const getData = () => {
     return JSON.parse(window.localStorage.getItem(keys.userdata) ?? "") || [];
