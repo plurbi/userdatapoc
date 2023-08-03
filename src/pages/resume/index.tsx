@@ -1,103 +1,89 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Table } from 'antd';
 import styled from 'styled-components';
 import AppMenu from '@/components/menu';
+import { getPurchases } from '@/services/purchaseService';
+import { checkPrimeSync } from 'crypto';
 
 
 const Flexbox = styled.div`
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  padding: 10%;
-  margin: 10%;
+ 
 `;
 
 const source = [
     {
         key: '1',
-        Code: 'SP',
+        UserToken: '54354534',
         children: [
             {
-                key: '11',
-                Code: '5001',
-                DisplayName: 'audi',
-                Name: 'r8',
-                Type: '2012'
+                key: '30',
+
+                PublicIp: '127.30.340.56',
+                ProductToken: 'ppdfsdpfpdsfpsfsdp',
+                ProductName: "ProductName"
             },
             {
-                key: '12',
-                Code: '313',
-                DisplayName: 'audi',
-                Name: 'rs5',
-                Type: '2013'
+                key: '31',
+
+                PublicIp: '127.30.340.56',
+                ProductToken: 'ppdfsdpfpdsfpsfsdp',
+                ProductName: "ProductName"
             }
         ]
     },
     {
         key: '2',
-        Code: 'Code',
+        UserToken: '34543543543',
         children: [
             {
-                key: '21',
-                Code: '243',
-                DisplayName: 'ford',
-                Name: 'mustang',
-                Type: '2012'
+                key: '32',
+
+                PublicIp: '200.30.340.56',
+                ProductToken: 'ppdfsdpfpdsfpsfsdp',
+                ProductName: "ProductName"
             },
             {
-                key: '22',
-                Code: '503431',
-                DisplayName: 'ford',
-                Name: 'fusion',
-                Type: '2015'
+                key: '33',
+
+                PublicIp: '200.30.340.56',
+                ProductToken: 'ppdfsdpfpdsfpsfsdp',
+                ProductName: "ProductName"
             }
         ]
     },
     {
         key: '3',
-        Code: 'Message',
+        UserToken: '34534534',
         children: [
             {
-                key: '31',
-                Code: '4311',
-                DisplayName: 'kia',
-                Name: 'optima',
-                Type: '2012'
+                key: '34',
+                PublicIp: '127.30.30.56',
+                ProductToken: 'ppdfsdpfpdsfpsfsdp',
+                ProductName: "ProductName"
             }
         ]
     }
 ];
 
 const columns = [
-    {
-        title: 'Code',
-        dataIndex: 'Code',
-        key: 'Code',
-        filters: [
-            { text: 'SP', value: 'SP' },
-            { text: 'Code', value: 'Code' },
-            { text: 'Message', value: 'Message' }
-        ],
-
-    },
-    {
-        title: 'Display Name',
-        dataIndex: 'DisplayName',
-        key: 'DisplayName',
-        filters: [
-            { text: 'audi', value: 'audi' },
-            { text: 'ford', value: 'ford' },
-            { text: 'kia', value: 'kia' }
-        ],
-
-    },
-    { title: 'Name', dataIndex: 'Name', key: 'Name' },
-    { title: 'Type', dataIndex: 'Type', key: 'Type' }
+    { title: 'User  Token', dataIndex: 'UserToken', key: 'UserToken', },
+    { title: 'Public IP', dataIndex: 'PublicIp', key: 'PublicIp', },
+    { title: 'Product Token', dataIndex: 'ProductToken', key: 'ProductToken' },
+    { title: 'Product Name', dataIndex: 'ProductName', key: 'ProductName' },
 ];
 
-function NestedTables() {
+
+
+function Resume() {
+
+
+    useEffect(() => {
+        const p = getPurchases();
+        console.log('Purchase', p);
+    }, []);
+
     return (
         <>
             <AppMenu />
@@ -114,4 +100,4 @@ function NestedTables() {
     );
 }
 
-export default NestedTables
+export default Resume;
