@@ -1,28 +1,58 @@
-export type UserData = {   
-    userToken:string;
-    connectionType?:string;
-    isMobile?:boolean; // navigator['userAgentData'].mobile experimental
-    platform?:string; // navigator.platform
-    deviceScreenSizeHeight?:number; //window.screen.height
-    deviceScreenSizeWidth?:number; //window.screen.width
-    location?:string; // window.origin ej: www.localhost:3000
-    publicIP?:string;
-    localIP?:string;
-    latitude?:number;
-    longitude?:number;
-    email?:string;
-    platformResume?:string;
-    platformDescription?:string;
-    platformName?:string;
-    osArchitecture?:number;
-    architectureFamily?:string;
-    architectureVersion?:string;
-    browserVersion?:string;
-    colorDepth?:number;
-    logicalProcessors?:number;
-    timeZone?:string;
-    accelerometer?:boolean;
-    giroscope?:boolean;
 
-    
+import CryptoJS from "crypto-js";
+
+export class UserData {
+    userToken?: string;
+    connectionType?: string;
+    isMobile?: boolean;
+    platform?: string;
+    deviceScreenSizeHeight?: number;
+    deviceScreenSizeWidth?: number;
+    location?: string;
+    publicIP?: string;
+    localIP?: string;
+    latitude?: number;
+    longitude?: number;
+    email?: string;
+    platformResume?: string;
+    platformDescription?: string;
+    platformName?: string;
+    osArchitecture?: number;
+    architectureFamily?: string;
+    architectureVersion?: string;
+    browserVersion?: string;
+    colorDepth?: number;
+    logicalProcessors?: number;
+    timeZone?: string;
+    accelerometer?: boolean;
+    giroscope?: boolean;
+
+    constructor() {
+
+        this.userToken = this.concatenateAndEncrypt(this.publicIP,
+            this.deviceScreenSizeHeight?.toString(),
+            this.deviceScreenSizeWidth?.toString(),
+            this.latitude?.toString(),
+            this.longitude?.toString(),
+            this.colorDepth?.toString(),
+            this.location?.toString(),
+            this.platformResume?.toString(),
+            this.architectureFamily,
+            this.architectureVersion, 
+            this.browserVersion,
+            this.logicalProcessors?.toString(),
+            this.timeZone,
+            this.trueFalse(this.accelerometer),
+            this.trueFalse(this.giroscope)
+        );
+    }
+    concatenateAndEncrypt = (...strings: (string | undefined)[]) => {
+        const combinedString = strings.join('');
+        const encrypted = CryptoJS.SHA256(combinedString).toString();
+
+        return encrypted;
+    }
+    trueFalse = (value:boolean | undefined):string => {
+        return value ? "true" : "false";
+    }
 }

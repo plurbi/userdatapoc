@@ -1,7 +1,8 @@
 
 
+import { UserData } from "@/models/userData";
 import { saveUserData } from "@/services/localStorageService";
-import { UserData } from "../../models/userData";
+
 
 import CryptoJS from "crypto-js";
 import platform from 'platform';
@@ -42,46 +43,35 @@ function getAvailableFonts() {
 }
 const getLocalIP = () => {
   return new Promise((resolve, reject) => {
-      const rtcConfig = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
-      const pc = new RTCPeerConnection(rtcConfig);
+    const rtcConfig = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+    const pc = new RTCPeerConnection(rtcConfig);
 
-      pc.createDataChannel('');
-      pc.createOffer()
-          .then(sdp => pc.setLocalDescription(sdp))
-          .catch(reject);
+    pc.createDataChannel('');
+    pc.createOffer()
+      .then(sdp => pc.setLocalDescription(sdp))
+      .catch(reject);
 
-      pc.onicecandidate = (event) => {
-          if (event.candidate) {
-              const candidate = event.candidate.candidate;
-              const localIP = candidate.split(' ')[3];
-              console.log('candidate', candidate);
-              resolve(localIP);
-              pc.close();
-          }
-      };
+    pc.onicecandidate = (event) => {
+      if (event.candidate) {
+        const candidate = event.candidate.candidate;
+        const localIP = candidate.split(' ')[3];
+        console.log('candidate', candidate);
+        resolve(localIP);
+        pc.close();
+      }
+    };
   });
 }
 const setUserData = async (email: string) => {
 
-//  const localIP = await getLocalIP()
-//   .then(localIP => localIP)
-//   .catch(err => console.error("Error getting local IP:", err));
+  //  const localIP = await getLocalIP()
+  //   .then(localIP => localIP)
+  //   .catch(err => console.error("Error getting local IP:", err));
 
   const geoData = await getGeo();
   const ipData = await getIPAddress();
-  const userdata: UserData =
-  {
-    userToken: concatenateAndEncrypt(
-      ipData,
-      window.screen.height.toString(),
-      window.screen.width.toString(),
-      email,
-      geoData?.lat?.toString(),
-      geoData?.long?.toString(),
-      screen.colorDepth.toString())
-  };
-  
- 
+  const userdata = new UserData();
+
   userdata.deviceScreenSizeHeight = window.screen.height;
   userdata.deviceScreenSizeWidth = window.screen.width;
   userdata.location = window.origin;
@@ -99,15 +89,9 @@ const setUserData = async (email: string) => {
   userdata.colorDepth = screen.colorDepth;
   userdata.logicalProcessors = navigator.hardwareConcurrency;
   userdata.accelerometer = 'DeviceMotionEvent' in window;
- 
   userdata.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   saveUserData(userdata);
 }
-const concatenateAndEncrypt = (...strings: string[]): string => {
-  const combinedString = strings.join('');
-  const encrypted = CryptoJS.SHA256(combinedString).toString();
 
-  return encrypted;
-}
 export { setUserData };

@@ -4,7 +4,7 @@ import products from '../../mock/productsList';
 import { Product as Product } from "@/models/products";
 import PurchaseAPI from "@/apis/purchaseApi";
 import { getCurrentUser, getUserToken } from "@/services/localStorageService";
-import productsList from "../../mock/productsList";
+ 
 
 export default function Purchase() {
 

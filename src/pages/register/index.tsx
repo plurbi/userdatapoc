@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'antd';
 
 import AppMenu from '@/components/menu';
-import { UserData } from '@/models/userData';
+ 
 import { setUserData } from '@/app/storeUserData/consumerData';
 
 import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/services/localStorageService';
+import { UserData } from '@/models/userData';
 
 const Register = () => {
   const [inputData, setInputData] = useState<string>("");
