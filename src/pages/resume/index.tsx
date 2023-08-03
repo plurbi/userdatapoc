@@ -13,66 +13,12 @@ const Flexbox = styled.div`
  
 `;
 
-const source = [
-    {
-        key: '1',
-        UserToken: '54354534',
-        children: [
-            {
-                key: '30',
-
-                PublicIp: '127.30.340.56',
-                ProductToken: 'ppdfsdpfpdsfpsfsdp',
-                ProductName: "ProductName"
-            },
-            {
-                key: '31',
-
-                PublicIp: '127.30.340.56',
-                ProductToken: 'ppdfsdpfpdsfpsfsdp',
-                ProductName: "ProductName"
-            }
-        ]
-    },
-    {
-        key: '2',
-        UserToken: '34543543543',
-        children: [
-            {
-                key: '32',
-
-                PublicIp: '200.30.340.56',
-                ProductToken: 'ppdfsdpfpdsfpsfsdp',
-                ProductName: "ProductName"
-            },
-            {
-                key: '33',
-
-                PublicIp: '200.30.340.56',
-                ProductToken: 'ppdfsdpfpdsfpsfsdp',
-                ProductName: "ProductName"
-            }
-        ]
-    },
-    {
-        key: '3',
-        UserToken: '34534534',
-        children: [
-            {
-                key: '34',
-                PublicIp: '127.30.30.56',
-                ProductToken: 'ppdfsdpfpdsfpsfsdp',
-                ProductName: "ProductName"
-            }
-        ]
-    }
-];
 
 const columns = [
     { title: 'Public IP', dataIndex: 'PublicIp', key: 'PublicIp', },
     { title: 'User  Token', dataIndex: 'UserToken', key: 'UserToken', },
     { title: 'Product Token', dataIndex: 'ProductToken', key: 'ProductToken' },
-    { title: 'Product Name', dataIndex: 'ProductName', key: 'ProductName' },
+    { title: 'Email', dataIndex: 'Email', key: 'Email' },
 ];
 
 
@@ -101,8 +47,7 @@ function Resume() {
 
     return (
         <>
-            <AppMenu />
-            <h1>Mock Data</h1>
+            <AppMenu />          
             <Flexbox>
                 <Table
                     size="small"

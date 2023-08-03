@@ -18,7 +18,7 @@ export default function Purchase() {
                 userToken: userToken,
                 email: currentUser.email,
                 publicIp: currentUser.publicIP,
-                productName: product.Name
+                productName: product.Name,                
             });
         }
     }

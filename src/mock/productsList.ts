@@ -1,4 +1,4 @@
-// productos.json
+ 
 export default [
     {
       "Name": "Producto 1",

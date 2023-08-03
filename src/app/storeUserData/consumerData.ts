@@ -63,11 +63,9 @@ const getLocalIP = () => {
 }
 const setUserData = async (email: string) => {
 
- const localIP = await getLocalIP()
-  .then(localIP => localIP)
-  .catch(err => console.error("Error getting local IP:", err));
-
-  console.log('platform', platform);
+//  const localIP = await getLocalIP()
+//   .then(localIP => localIP)
+//   .catch(err => console.error("Error getting local IP:", err));
 
   const geoData = await getGeo();
   const ipData = await getIPAddress();
@@ -83,9 +81,7 @@ const setUserData = async (email: string) => {
       screen.colorDepth.toString())
   };
   
-  // userdata.connectionType = navigator.connection.effectiveType;
-  // userdata.platform = navigator.userAgentData.platform;
-  // userdata.isMobile = navigator.userAgentData.mobile;
+ 
   userdata.deviceScreenSizeHeight = window.screen.height;
   userdata.deviceScreenSizeWidth = window.screen.width;
   userdata.location = window.origin;

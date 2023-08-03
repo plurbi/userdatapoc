@@ -23,4 +23,6 @@ export type UserData = {
     timeZone?:string;
     accelerometer?:boolean;
     giroscope?:boolean;
+
+    
 }
