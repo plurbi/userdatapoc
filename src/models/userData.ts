@@ -20,4 +20,7 @@ export type UserData = {
     browserVersion?:string;
     colorDepth?:number;
     logicalProcessors?:number;
+    timeZone?:string;
+    accelerometer?:boolean;
+    giroscope?:boolean;
 }

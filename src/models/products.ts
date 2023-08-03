@@ -1,13 +1,13 @@
 export class Product {
-    nombre: string;
-    precio: number;
-    stock: number;
-    token:string;
+    Name: string;
+    Price: number;
+    Stock: number;
+    Token:string;
     constructor(nombre: string, precio: number, stock: number, token:string) {
-      this.nombre = nombre;
-      this.precio = precio;
-      this.stock = stock;
-      this.token=token;
+      this.Name = nombre;
+      this.Price = precio;
+      this.Stock = stock;
+      this.Token=token;
     }
   
     // Métodos adicionales de la clase, si es necesario

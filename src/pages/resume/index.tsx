@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import AppMenu from '@/components/menu';
 import { getPurchases } from '@/services/purchaseService';
 import { checkPrimeSync } from 'crypto';
-
+import axios from 'axios';
 
 const Flexbox = styled.div`
  
@@ -77,12 +77,22 @@ const columns = [
 
 
 function Resume() {
-
-
     useEffect(() => {
-        const p = getPurchases();
-        console.log('Purchase', p);
-    }, []);
+        // Función para hacer la petición GET al endpoint
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:3001/purchases');
+            //setData(response.data);
+            console.log("RESPONSE", response);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+    
 
     return (
         <>

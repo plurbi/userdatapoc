@@ -46,69 +46,78 @@ const Register = () => {
           {users.map((u, i) => {
             return (
               <>
-                <Row key={i} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={1} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Token</Col>
                   <Col span={8}> {u.userToken}</Col>
                 </Row>
-                <Row key={u.email} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={2} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> E-mail</Col>
                   <Col span={8}> {u.email}</Col>
                 </Row>
-                <Row key={u.deviceScreenSizeHeight} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={3} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Height</Col>
                   <Col span={8}> {u.deviceScreenSizeHeight}</Col>
                 </Row>
-                <Row key={u.deviceScreenSizeWidth} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={4} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Width</Col>
                   <Col span={8}> {u.deviceScreenSizeWidth}</Col>
                 </Row>
-                <Row key={u.publicIP} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={5} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Public IP</Col>
                   <Col span={8}> {u.publicIP}</Col>
                 </Row>
-                <Row key={u.localIP} onClick={() => { getuserByEmail(u.email) }}>
-                  <Col span={8}> Local IP</Col>
-                  <Col span={8}> {u.localIP}</Col>
-                </Row>
-                <Row key={90} onClick={() => { getuserByEmail(u.email) }}>
+           
+                <Row key={6} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Latitude</Col>
                   <Col span={8}> {u.latitude}</Col>
                 </Row>
-                <Row key={u.longitude} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={7} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Longitud</Col>
                   <Col span={8}> {u.longitude}</Col>
                 </Row>
-                <Row key={u.platformDescription} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={8} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Description</Col>
                   <Col span={8}> {u.platformDescription}</Col>
                 </Row>
-                <Row key={u.platformName} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={9} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Name</Col>
                   <Col span={8}> {u.platformName}</Col>
                 </Row>
-                <Row key={u.osArchitecture} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={10} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Architecture</Col>
                   <Col span={8}> {u.osArchitecture}</Col>
                 </Row>
-                <Row key={u.architectureFamily} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={11} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Architecture Family</Col>
                   <Col span={8}> {u.architectureFamily}</Col>
                 </Row>
-                <Row key={u.architectureVersion} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={12} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Architecture Version</Col>
                   <Col span={8}> {u.architectureVersion}</Col>
                 </Row>
-                <Row key={u.browserVersion} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={13} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Browser Version</Col>
                   <Col span={8}> {u.browserVersion}</Col>
                 </Row>
-                <Row key={100} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={14} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Color Depth</Col>
                   <Col span={8}> {u.colorDepth}</Col>
                 </Row>
-                <Row key={u.logicalProcessors} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={15} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Logical Processors</Col>
                   <Col span={8}> {u.logicalProcessors}</Col>
+                </Row>
+                <Row key={16} onClick={() => { getuserByEmail(u.email) }}>
+                  <Col span={8}> Time Zone</Col>
+                  <Col span={8}> {u.timeZone}</Col>
+                </Row>
+                <Row key={17} onClick={() => { getuserByEmail(u.email) }}>
+                  <Col span={8}> Accelerometer </Col>
+                  <Col span={8}> {u.accelerometer ? "True" : "False"}</Col>
+                </Row>
+                <Row key={18} onClick={() => { getuserByEmail(u.email) }}>
+                  <Col span={8}> Giroscope </Col>
+                  <Col span={8}> {u.giroscope ? "True" : "False"}</Col>
                 </Row>
               </>
             );

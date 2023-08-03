@@ -35,7 +35,11 @@ const getGeo = (): Promise<{ lat: number; long: number }> => {
     navigator.geolocation.getCurrentPosition(success, error);
   });
 };
-
+function getAvailableFonts() {
+  const fontList = document.fonts;
+  const fonts = Array.from(fontList).map(fontFace => fontFace.family);
+  return fonts.join(',');
+}
 const getLocalIP = () => {
   return new Promise((resolve, reject) => {
       const rtcConfig = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
@@ -78,7 +82,7 @@ const setUserData = async (email: string) => {
       geoData?.long?.toString(),
       screen.colorDepth.toString())
   };
-
+  
   // userdata.connectionType = navigator.connection.effectiveType;
   // userdata.platform = navigator.userAgentData.platform;
   // userdata.isMobile = navigator.userAgentData.mobile;
@@ -98,7 +102,9 @@ const setUserData = async (email: string) => {
   userdata.browserVersion = platform.version;
   userdata.colorDepth = screen.colorDepth;
   userdata.logicalProcessors = navigator.hardwareConcurrency;
-  userdata.localIP = localIP?.toString();
+  userdata.accelerometer = 'DeviceMotionEvent' in window;
+ 
+  userdata.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   saveUserData(userdata);
 }
