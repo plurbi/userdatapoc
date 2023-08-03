@@ -8,7 +8,7 @@ import productsList from "../../mock/productsList";
 
 export default function Purchase() {
 
-   
+
     const purchase = async (product: Product) => {
         const currentUser = getCurrentUser();
         const userToken = getUserToken();
@@ -18,7 +18,7 @@ export default function Purchase() {
                 userToken: userToken,
                 email: currentUser.email,
                 publicIp: currentUser.publicIP,
-                productName: product.Name,                
+                productName: product.Name,
             });
         }
     }
@@ -37,8 +37,7 @@ export default function Purchase() {
                 <Col span={24}>
                     {products.map((product, i) => {
                         return (
-
-                            <Row key={i}>
+                            <Row key={i} style={{ paddingTop: '5px' }}>
                                 <Col span={4}>{product.Name}</Col>
                                 <Col span={4}>{product.Price}</Col>
                                 <Col span={4}>{product.Stock}</Col>
@@ -46,7 +45,6 @@ export default function Purchase() {
 
                                 <Button type="primary" onClick={() => { purchase(product) }}>Purchase</Button>
                             </Row>
-
                         );
                     })}
                 </Col>
