@@ -70,7 +70,7 @@ const Register = () => {
                   <Col span={8}> Local IP</Col>
                   <Col span={8}> {u.localIP}</Col>
                 </Row>
-                <Row key={u.latitude} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={90} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Latitude</Col>
                   <Col span={8}> {u.latitude}</Col>
                 </Row>
@@ -102,11 +102,11 @@ const Register = () => {
                   <Col span={8}> Browser Version</Col>
                   <Col span={8}> {u.browserVersion}</Col>
                 </Row>
-                <Row key={u.colorDepth} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={100} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Color Depth</Col>
                   <Col span={8}> {u.colorDepth}</Col>
                 </Row>
-                <Row key={u.colorDepth} onClick={() => { getuserByEmail(u.email) }}>
+                <Row key={u.logicalProcessors} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Logical Processors</Col>
                   <Col span={8}> {u.logicalProcessors}</Col>
                 </Row>

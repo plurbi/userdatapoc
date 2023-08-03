@@ -49,7 +49,8 @@ const getLocalIP = () => {
       pc.onicecandidate = (event) => {
           if (event.candidate) {
               const candidate = event.candidate.candidate;
-              const localIP = candidate.split(' ')[4];
+              const localIP = candidate.split(' ')[3];
+              console.log('candidate', candidate);
               resolve(localIP);
               pc.close();
           }
