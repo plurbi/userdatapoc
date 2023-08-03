@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Table } from 'antd';
 import styled from 'styled-components';
@@ -7,6 +7,7 @@ import AppMenu from '@/components/menu';
 import { getPurchases } from '@/services/purchaseService';
 import { checkPrimeSync } from 'crypto';
 import axios from 'axios';
+import { GroupedData } from '@/models/groupedData';
 
 const Flexbox = styled.div`
  
@@ -68,8 +69,8 @@ const source = [
 ];
 
 const columns = [
-    { title: 'User  Token', dataIndex: 'UserToken', key: 'UserToken', },
     { title: 'Public IP', dataIndex: 'PublicIp', key: 'PublicIp', },
+    { title: 'User  Token', dataIndex: 'UserToken', key: 'UserToken', },
     { title: 'Product Token', dataIndex: 'ProductToken', key: 'ProductToken' },
     { title: 'Product Name', dataIndex: 'ProductName', key: 'ProductName' },
 ];
@@ -77,13 +78,17 @@ const columns = [
 
 
 function Resume() {
+    
+    const [groupedData, setGroupedData] = useState<GroupedData[]>([]);
+
     useEffect(() => {
         // Función para hacer la petición GET al endpoint
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:3001/purchases');
+            const response = await axios.get<GroupedData[]>('http://localhost:3001/purchases');
             //setData(response.data);
             console.log("RESPONSE", response);
+            setGroupedData(response.data);
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -103,7 +108,7 @@ function Resume() {
                     size="small"
                     indentSize={0}
                     columns={columns}
-                    dataSource={source}
+                    dataSource={groupedData}
                 />
             </Flexbox>
         </>
