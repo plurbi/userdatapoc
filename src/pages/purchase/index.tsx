@@ -3,18 +3,26 @@ import { Button, Col, Row, Space } from "antd";
 import products from '../../mock/productsList';
 import { Product as Product } from "@/models/products";
 import { getPurchases, purchaseProduct } from "@/services/purchaseService";
-import { getUserToken } from "@/services/localStorageService";
 import { useState } from "react";
+import PurchaseAPI from "@/apis/purchaseApi";
+import { getCurrentUser, getUserToken } from "@/services/localStorageService";
 
 export default function Purchase() {
 
-    const [purchases, setPurchases]=useState(getPurchases());
-    const purchase = async (product: Product) => {
-        purchaseProduct({            
-            productToken: product.token
-        });
-
-        setPurchases(getPurchases);
+    const [purchases, setPurchases] = useState(getPurchases());
+    const purchase = async (product: Product) => {      
+        const currentUser = getCurrentUser();
+        const userToken = getUserToken();
+        if (currentUser) {
+            const purchaseAPI = new PurchaseAPI();
+            await purchaseAPI.sendPurchase({
+                productToken: product.token,
+                userToken: userToken,
+                email: currentUser.email,
+                publicIp: currentUser.publicIP
+            });
+            setPurchases(getPurchases);
+        }
     }
 
     return (
@@ -53,7 +61,7 @@ export default function Purchase() {
                         return (
                             <Row key={i}>
                                 <Col span={12}>{product.userToken}</Col>
-                                <Col span={12}>{product.productToken}</Col>                                                            
+                                <Col span={12}>{product.productToken}</Col>
                             </Row>
                         );
                     })}

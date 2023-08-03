@@ -25,6 +25,17 @@ export function loadUserDataFromLocalStorage(): UserData[] {
   return [];
 }
 
+export function getCurrentUser ():UserData | null {
+  if (typeof window !== 'undefined') {
+    const userDataJSON = localStorage.getItem(keys.userdata);
+    const array = userDataJSON ? JSON.parse(userDataJSON) : [];
+    if(array.length > 0){
+      return array[0];
+    }
+  }
+  return null;
+}
+
 export function getUserByEmail(email: string): UserData | null {
   if (typeof window !== 'undefined') {
     const userDataJSON = localStorage.getItem(keys.userdata);
