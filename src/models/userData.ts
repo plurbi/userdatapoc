@@ -7,6 +7,7 @@ export type UserData = {
     deviceScreenSizeWidth?:number; //window.screen.width
     location?:string; // window.origin ej: www.localhost:3000
     publicIP?:string;
+    localIP?:string;
     latitude?:number;
     longitude?:number;
     email?:string;

@@ -35,11 +35,33 @@ const getGeo = (): Promise<{ lat: number; long: number }> => {
     navigator.geolocation.getCurrentPosition(success, error);
   });
 };
+
+const getLocalIP = () => {
+  return new Promise((resolve, reject) => {
+      const rtcConfig = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+      const pc = new RTCPeerConnection(rtcConfig);
+
+      pc.createDataChannel('');
+      pc.createOffer()
+          .then(sdp => pc.setLocalDescription(sdp))
+          .catch(reject);
+
+      pc.onicecandidate = (event) => {
+          if (event.candidate) {
+              const candidate = event.candidate.candidate;
+              const localIP = candidate.split(' ')[4];
+              resolve(localIP);
+              pc.close();
+          }
+      };
+  });
+}
 const setUserData = async (email: string) => {
 
+ const localIP = await getLocalIP()
+  .then(localIP => localIP)
+  .catch(err => console.error("Error getting local IP:", err));
 
-  // console.log('window', window);
-  // console.log('navigator', navigator);
   console.log('platform', platform);
 
   const geoData = await getGeo();
@@ -75,6 +97,7 @@ const setUserData = async (email: string) => {
   userdata.browserVersion = platform.version;
   userdata.colorDepth = screen.colorDepth;
   userdata.logicalProcessors = navigator.hardwareConcurrency;
+  userdata.localIP = localIP?.toString();
 
   saveUserData(userdata);
 }

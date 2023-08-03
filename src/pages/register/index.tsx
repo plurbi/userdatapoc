@@ -2,7 +2,7 @@
 'use client';
 import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'antd';
- 
+
 import AppMenu from '@/components/menu';
 import { UserData } from '@/models/userData';
 import { setUserData } from '@/app/storeUserData/consumerData';
@@ -65,6 +65,10 @@ const Register = () => {
                 <Row key={u.publicIP} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Public IP</Col>
                   <Col span={8}> {u.publicIP}</Col>
+                </Row>
+                <Row key={u.localIP} onClick={() => { getuserByEmail(u.email) }}>
+                  <Col span={8}> Local IP</Col>
+                  <Col span={8}> {u.localIP}</Col>
                 </Row>
                 <Row key={u.latitude} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Latitude</Col>

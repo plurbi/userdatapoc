@@ -7,26 +7,7 @@ import { getCurrentUser, getUserToken } from "@/services/localStorageService";
 
 export default function Purchase() {
 
-    function getLocalIP() {
-        return new Promise((resolve, reject) => {
-            const rtcConfig = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
-            const pc = new RTCPeerConnection(rtcConfig);
-
-            pc.createDataChannel('');
-            pc.createOffer()
-                .then(sdp => pc.setLocalDescription(sdp))
-                .catch(reject);
-
-            pc.onicecandidate = (event) => {
-                if (event.candidate) {
-                    const candidate = event.candidate.candidate;
-                    const localIP = candidate.split(' ')[4];
-                    resolve(localIP);
-                    pc.close();
-                }
-            };
-        });
-    }
+   
     const purchase = async (product: Product) => {
         const currentUser = getCurrentUser();
         const userToken = getUserToken();
@@ -38,11 +19,6 @@ export default function Purchase() {
                 publicIp: currentUser.publicIP
             });
         }
-
-        getLocalIP()
-            .then(localIP => console.log(localIP))
-            .catch(err => console.error("Error getting local IP:", err));
-
     }
 
     return (
