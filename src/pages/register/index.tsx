@@ -98,6 +98,14 @@ const Register = () => {
                   <Col span={8}> Browser Version</Col>
                   <Col span={8}> {u.browserVersion}</Col>
                 </Row>
+                <Row key={u.colorDepth} onClick={() => { getuserByEmail(u.email) }}>
+                  <Col span={8}> Color Depth</Col>
+                  <Col span={8}> {u.colorDepth}</Col>
+                </Row>
+                <Row key={u.colorDepth} onClick={() => { getuserByEmail(u.email) }}>
+                  <Col span={8}> Logical Processors</Col>
+                  <Col span={8}> {u.logicalProcessors}</Col>
+                </Row>
               </>
             );
           })}

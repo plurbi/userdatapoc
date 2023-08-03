@@ -17,4 +17,6 @@ export type UserData = {
     architectureFamily?:string;
     architectureVersion?:string;
     browserVersion?:string;
+    colorDepth?:number;
+    logicalProcessors?:number;
 }

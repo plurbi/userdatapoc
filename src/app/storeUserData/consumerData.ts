@@ -52,7 +52,8 @@ const setUserData = async (email: string) => {
       window.screen.width.toString(),
       email,
       geoData?.lat?.toString(),
-      geoData?.long?.toString())
+      geoData?.long?.toString(),
+      screen.colorDepth.toString())
   };
 
   // userdata.connectionType = navigator.connection.effectiveType;
@@ -72,6 +73,8 @@ const setUserData = async (email: string) => {
   userdata.architectureFamily = platform.os?.family;
   userdata.architectureVersion = platform.os?.version;
   userdata.browserVersion = platform.version;
+  userdata.colorDepth = screen.colorDepth;
+  userdata.logicalProcessors = navigator.hardwareConcurrency;
 
   saveUserData(userdata);
 }
