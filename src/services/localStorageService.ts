@@ -16,7 +16,7 @@ export function saveUserData(userData: UserData): void {
     const existingData: UserData[] = existingDataJSON ? JSON.parse(existingDataJSON) : [];
     existingData.push(userData);
     localStorage.setItem(keys.userdata, JSON.stringify(existingData));
-    setUserToken(userData.userToken);
+    setUserToken(userData.userToken ?? "");
   }
 }
 
