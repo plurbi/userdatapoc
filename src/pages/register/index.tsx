@@ -1,7 +1,7 @@
 
 'use client';
 import React, { useState } from 'react';
-import { Button, Col, Input, Row } from 'antd';
+import { Button, Col, Form, Input, Row } from 'antd';
 
 import AppMenu from '@/components/menu';
 
@@ -33,16 +33,45 @@ const Register = () => {
     clearLocalStorage();
     setUsers(loadUserDataFromLocalStorage);
   }
+  const validateMessages = {
+    required: '${label} is required!',
+    types: {
+      email: '${label} is not a valid email!',
+      number: '${label} is not a valid number!',
+    },
+    number: {
+      range: '${label} must be between ${min} and ${max}',
+    },
+  };
   return (
     <div className="App">
       <AppMenu />
       <Row>
         <Col>
-          <Input placeholder="Basic usage" onChange={(e) => { setInputData(e.target.value) }} value={inputData} />
+          <Form
+            onFinish={setData}
+            name="nest-messages"
+            style={{ maxWidth: 600 }}
+            validateMessages={validateMessages}
+          >
+            <Row>
+              <Col span={20}>
+                <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
+                  <Input onChange={(e) => { setInputData(e.target.value) }} value={inputData} />
+                </Form.Item>
+              </Col>
+              <Col span={4}>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+
         </Col>
-        <Col>
-          <Button type="primary" onClick={setData}>Log In</Button>
-        </Col>
+        {/* <Col>
+          <Button type="primary" onClick={setData} htmlType="submit">Log In</Button>
+        </Col> */}
       </Row>
       <hr></hr>
       <Row>
@@ -126,15 +155,15 @@ const Register = () => {
               </>
             );
           })}
-        </Col>        
+        </Col>
       </Row>
       <hr></hr>
       <Row>
         <Button type="primary" onClick={() => { cleanLocalStorage() }} >Reset Data</Button>
       </Row>
-      <Col span={8} className='map-container'>           
-           {isLoaded ? <MyMap lat={users[0]?.latitude ?? 0} lng={users[0]?.longitude ?? 0} /> : "Loading..."}         
-       </Col>
+      <Col span={8} className='map-container'>
+        {isLoaded ? <MyMap lat={users[0]?.latitude ?? 0} lng={users[0]?.longitude ?? 0} /> : "Loading..."}
+      </Col>
     </div>
   );
 
