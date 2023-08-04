@@ -55,15 +55,18 @@ const Register = () => {
             validateMessages={validateMessages}
           >
             <Row>
-              <Col span={20}>
+              <Col span={16}>
                 <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
                   <Input onChange={(e) => { setInputData(e.target.value) }} value={inputData} />
                 </Form.Item>
               </Col>
-              <Col span={4}>
+              <Col span={6}>
                 <Button type="primary" htmlType="submit">
                   Submit
                 </Button>
+              </Col>
+              <Col span={2}>
+                <Button type="primary" onClick={() => { cleanLocalStorage() }} >Reset Data</Button>
               </Col>
             </Row>
           </Form>
@@ -159,7 +162,7 @@ const Register = () => {
       </Row>
       <hr></hr>
       <Row>
-        <Button type="primary" onClick={() => { cleanLocalStorage() }} >Reset Data</Button>
+          <h2>Location</h2>
       </Row>
       <Col span={8} className='map-container'>
         {isLoaded ? <MyMap lat={users[0]?.latitude ?? 0} lng={users[0]?.longitude ?? 0} /> : "Loading..."}
