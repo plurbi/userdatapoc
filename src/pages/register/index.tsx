@@ -4,16 +4,19 @@ import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'antd';
 
 import AppMenu from '@/components/menu';
- 
-import { setUserData } from '@/app/storeUserData/consumerData';
 
+import { setUserData } from '@/app/storeUserData/consumerData';
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { clearLocalStorage, getUserByEmail, loadUserDataFromLocalStorage } from '@/services/localStorageService';
 import { UserData } from '@/models/userData';
+import MyMap from '../myMap';
 
 const Register = () => {
   const [inputData, setInputData] = useState<string>("");
   const [users, setUsers] = useState<UserData[]>(loadUserDataFromLocalStorage);
   const [selectedUser, setSelectedUser] = useState<UserData>();
+  const { isLoaded } = useLoadScript({ googleMapsApiKey: "AIzaSyDi0E7R40DvyxOC0HTLDN1INlrxF3oyjGY" });
+
 
   const getuserByEmail = (email: string | undefined) => {
     const user = getUserByEmail(email ?? "");
@@ -43,7 +46,7 @@ const Register = () => {
       </Row>
       <hr></hr>
       <Row>
-        <Col span={24}>
+        <Col span={16}>
           {users.map((u, i) => {
             return (
               <>
@@ -67,7 +70,7 @@ const Register = () => {
                   <Col span={8}> Public IP</Col>
                   <Col span={8}> {u.publicIP}</Col>
                 </Row>
-           
+
                 <Row key={6} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Latitude</Col>
                   <Col span={8}> {u.latitude}</Col>
@@ -123,15 +126,19 @@ const Register = () => {
               </>
             );
           })}
-        </Col>
+        </Col>        
       </Row>
       <hr></hr>
       <Row>
         <Button type="primary" onClick={() => { cleanLocalStorage() }} >Reset Data</Button>
       </Row>
+      <Col span={8} className='map-container'>           
+           {isLoaded ? <MyMap lat={users[0]?.latitude ?? 0} lng={users[0]?.longitude ?? 0} /> : "Loading..."}         
+       </Col>
     </div>
   );
 
 };
+
 
 export default Register;

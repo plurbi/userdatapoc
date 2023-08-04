@@ -25,7 +25,7 @@ const items: MenuProps['items'] = [
           },  {
             label: 'Resume',
             key: 'resume',
-          },
+          }
         ],
       },      
     ],
