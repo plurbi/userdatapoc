@@ -90,7 +90,7 @@ const setUserData = async (email: string) => {
   userdata.logicalProcessors = navigator.hardwareConcurrency;
   userdata.accelerometer = 'DeviceMotionEvent' in window;
   userdata.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
+  userdata.generateToken();
   saveUserData(userdata);
 }
 

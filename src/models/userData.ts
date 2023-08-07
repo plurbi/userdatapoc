@@ -27,8 +27,17 @@ export class UserData {
     accelerometer?: boolean;
     giroscope?: boolean;
 
-    constructor() {
+   
+    concatenateAndEncrypt = (...strings: (string | undefined)[]) => {
+        const combinedString = strings.join('');
+        const encrypted = CryptoJS.SHA256(combinedString).toString();
 
+        return encrypted;
+    }
+    trueFalse = (value:boolean | undefined):string => {
+        return value ? "true" : "false";
+    }
+    generateToken(){
         this.userToken = this.concatenateAndEncrypt(this.publicIP,
             this.deviceScreenSizeHeight?.toString(),
             this.deviceScreenSizeWidth?.toString(),
@@ -45,14 +54,5 @@ export class UserData {
             this.trueFalse(this.accelerometer),
             this.trueFalse(this.giroscope)
         );
-    }
-    concatenateAndEncrypt = (...strings: (string | undefined)[]) => {
-        const combinedString = strings.join('');
-        const encrypted = CryptoJS.SHA256(combinedString).toString();
-
-        return encrypted;
-    }
-    trueFalse = (value:boolean | undefined):string => {
-        return value ? "true" : "false";
     }
 }
