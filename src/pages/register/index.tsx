@@ -76,16 +76,16 @@ const Register = () => {
           <Button type="primary" onClick={setData} htmlType="submit">Log In</Button>
         </Col> */}
       </Row>
-      <hr></hr>
-      <Row>
-        <Col span={16}>
+   
+      <Row >
+        <Col span={8}>
           {users.map((u, i) => {
             return (
               <>
-                <Row key={1} onClick={() => { getuserByEmail(u.email) }}>
+                {/* <Row key={1} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> Token</Col>
-                  <Col span={8}> {u.userToken}</Col>
-                </Row>
+                  <Col span={2}> {u.userToken}</Col>
+                </Row> */}
                 <Row key={2} onClick={() => { getuserByEmail(u.email) }}>
                   <Col span={8}> E-mail</Col>
                   <Col span={8}> {u.email}</Col>
@@ -159,14 +159,14 @@ const Register = () => {
             );
           })}
         </Col>
+        <Col span={8}  >
+          <div style={{ width: '60%'}}>
+            {isLoaded ? <MyMap lat={users[0]?.latitude ?? 0} lng={users[0]?.longitude ?? 0} /> : "Loading..."}
+          </div>
+        </Col>
       </Row>
       <hr></hr>
-      <Row>
-          <h2>Location</h2>
-      </Row>
-      <Col span={8} className='map-container'>
-        {isLoaded ? <MyMap lat={users[0]?.latitude ?? 0} lng={users[0]?.longitude ?? 0} /> : "Loading..."}
-      </Col>
+
     </div>
   );
 
