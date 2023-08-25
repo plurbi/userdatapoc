@@ -31,7 +31,7 @@ function Resume() {
         // Función para hacer la petición GET al endpoint
         const fetchData = async () => {
           try {
-            const response = await axios.get<GroupedData[]>('https://poc-be2.onrender.com/purchases');
+            const response = await axios.get<GroupedData[]>('https://kgktuc2j8c.execute-api.us-east-1.amazonaws.com/dev/purchases');
             //setData(response.data);
             console.log("RESPONSE", response);
             setGroupedData(response.data);
